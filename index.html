@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Launch Roblox</title>
+<script>
+window.onload = function() {
+	const p = new URLSearchParams(location.search);
+	const pl = p.get('placeId');
+	const gi = p.get('gameInstanceId');
+	location.href = `roblox://placeId=${pl}&gameInstanceId=${gi}`;
+	const l = document.createElement('a');
+	l.href = `roblox://placeId=${pl}&gameInstanceId=${gi}`;
+	l.textContent = "Click here if Roblox didn't open";
+	document.body.appendChild(l);
+};
+</script>
+</head>
+<body>
+</body>
+</html>

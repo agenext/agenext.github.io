@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Auto Bounty Settings</title>
+</head>
+<body>
+<section>
+  <h1>Auto Bounty Settings</h1>
+</section>
+<p>Configure Auto Bounty Script Easily</p>
+<h3>Messages to Irritate the Opponent</h3>
+
+<div id="inputs-container">
+  <div><input type="text" class="message-input" maxlength="200" value="Hey" style="margin-bottom: 10px; width: 300px;"></div>
+  <div><input type="text" class="message-input" maxlength="200" value="You Are Weak, You Lack Hatred" style="margin-bottom: 10px; width: 300px;"></div>
+  <div><input type="text" class="message-input" maxlength="200" value="GG" style="margin-bottom: 10px; width: 300px;"></div>
+  <div><input type="text" class="message-input" maxlength="200" value="I Found You!" style="margin-bottom: 10px; width: 300px;"></div>
+</div>
+
+<button id="add-input">Add Input</button>
+<button id="copy-settings">Copy Settings</button>
+
+<script>
+const container = document.getElementById('inputs-container');
+const addBtn = document.getElementById('add-input');
+const copyBtn = document.getElementById('copy-settings');
+
+addBtn.addEventListener('click', () => {
+  const newDiv = document.createElement('div');
+  const newInput = document.createElement('input');
+  newInput.type = 'text';
+  newInput.className = 'message-input';
+  newInput.maxLength = 200;
+  newInput.style.marginBottom = '10px';
+  newInput.style.width = '300px';
+  newDiv.appendChild(newInput);
+  container.appendChild(newDiv);
+});
+
+copyBtn.addEventListener('click', () => {
+  const inputs = document.querySelectorAll('.message-input');
+  const messages = [];
+  inputs.forEach(input => {
+    if(input.value.trim() !== '') messages.push(input.value);
+  });
+
+  const luaText = 'Settings = {\n   ["Messages"] = {' + messages.map(msg => `"${msg.replace(/"/g,'\\"')}"`).join(', ') + '},\n}';
+
+  navigator.clipboard.writeText(luaText).then(() => {
+    alert('Copied messages in Roblox Lua format!');
+  }).catch(err => {
+    alert('Error When Copying: ' + err);
+  });
+});
+</script>
+</body>
+</html>

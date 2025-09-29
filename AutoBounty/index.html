@@ -1,58 +1,301 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Auto Bounty Settings</title>
+<title>Vortex Hub - Auto Bounty Beta</title>
+<style>
+#copy-settings{
+    padding: 10px 40px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.message-item{
+    margin-bottom: 8px;
+}
+</style>
 </head>
 <body>
-<section>
-  <h1>Auto Bounty Settings</h1>
-</section>
-<p>Configure Auto Bounty Script Easily</p>
-<h3>Messages to Irritate the Opponent</h3>
-
-<div id="inputs-container">
-  <div><input type="text" class="message-input" maxlength="200" value="Hey" style="margin-bottom: 10px; width: 300px;"></div>
-  <div><input type="text" class="message-input" maxlength="200" value="You Are Weak, You Lack Hatred" style="margin-bottom: 10px; width: 300px;"></div>
-  <div><input type="text" class="message-input" maxlength="200" value="GG" style="margin-bottom: 10px; width: 300px;"></div>
-  <div><input type="text" class="message-input" maxlength="200" value="I Found You!" style="margin-bottom: 10px; width: 300px;"></div>
+<h1>Vortex Hub</h1>
+<h3>Auto Bounty Beta</h3>
+<div id="settings-container">
+    <label>Team:</label>
+    <select id="team">
+        <option value="Pirates" selected>Pirates</option>
+        <option value="Marines">Marines</option>
+    </select><br><br>
+    <label>Distance:</label>
+    <input type="number" id="distance" value="6"><br><br>
+    <label>Auto Click:</label>
+    <select id="auto-click">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select><br><br>
+    <label>Use V3:</label>
+    <select id="use-v3">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select><br><br>
+    <label>Use V4:</label>
+    <select id="use-v4">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select><br><br>
+    <label>Use Ken:</label>
+    <select id="use-ken">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select><br><br>
+    <label>Ignore Friends:</label>
+    <select id="ignore-friends">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select><br><br>
+    <label>Level Difference:</label>
+    <input type="number" id="level-diff" value="612"><br><br>
+    <label>FPS Boost:</label>
+    <select id="fps-boost">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select><br><br>
 </div>
 
-<button id="add-input">Add Input</button>
+<h4>Melee</h4>
+<div id="melee-container">
+    <label>Enable:</label>
+    <select id="melee-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select><br><br>
+    <label>Delay:</label>
+    <input type="number" id="melee-delay" value="2"><br><br>
+    <label>Z:</label>
+    <select id="melee-z-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="melee-z-hold" value="0.1"><br><br>
+    <label>X:</label>
+    <select id="melee-x-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="melee-x-hold" value="0.1"><br><br>
+    <label>C:</label>
+    <select id="melee-c-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="melee-c-hold" value="0.1"><br><br>
+    <label>V:</label>
+    <select id="melee-v-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="melee-v-hold" value="0.1"><br><br>
+</div>
+
+<h4>Blox Fruit</h4>
+<div id="fruit-container">
+    <label>Enable:</label>
+    <select id="fruit-enable">
+        <option value="true">true</option>
+        <option value="false" selected>false</option>
+    </select><br><br>
+    <label>Delay:</label>
+    <input type="number" id="fruit-delay" value="1"><br><br>
+    <label>Z:</label>
+    <select id="fruit-z-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="fruit-z-hold" value="0.1"><br><br>
+    <label>X:</label>
+    <select id="fruit-x-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="fruit-x-hold" value="0.1"><br><br>
+    <label>C:</label>
+    <select id="fruit-c-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="fruit-c-hold" value="0.1"><br><br>
+    <label>V:</label>
+    <select id="fruit-v-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="fruit-v-hold" value="0.1"><br><br>
+    <label>F:</label>
+    <select id="fruit-f-enable">
+        <option value="true">true</option>
+        <option value="false" selected>false</option>
+    </select>
+    <input type="number" step="0.1" id="fruit-f-hold" value="0.1"><br><br>
+</div>
+
+<h4>Gun</h4>
+<div id="gun-container">
+    <label>Enable:</label>
+    <select id="gun-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select><br><br>
+    <label>Delay:</label>
+    <input type="number" id="gun-delay" value="2"><br><br>
+    <label>Z:</label>
+    <select id="gun-z-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="gun-z-hold" value="0.1"><br><br>
+    <label>X:</label>
+    <select id="gun-x-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="gun-x-hold" value="0.1"><br><br>
+</div>
+
+<h4>Sword</h4>
+<div id="sword-container">
+    <label>Enable:</label>
+    <select id="sword-enable">
+        <option value="true">true</option>
+        <option value="false" selected>false</option>
+    </select><br><br>
+    <label>Delay:</label>
+    <input type="number" id="sword-delay" value="1"><br><br>
+    <label>Z:</label>
+    <select id="sword-z-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="sword-z-hold" value="0.1"><br><br>
+    <label>X:</label>
+    <select id="sword-x-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select>
+    <input type="number" step="0.1" id="sword-x-hold" value="0.1"><br><br>
+</div>
+
+<h4>Chat</h4>
+<div id="chat-container">
+    <label>Enable Chat:</label>
+    <select id="chat-enable">
+        <option value="true" selected>true</option>
+        <option value="false">false</option>
+    </select><br><br>
+    <div id="messages-list">
+        <div class="message-item"><input type="text" value="Vortex Hub Is The Best"><button class="remove-msg">-</button></div>
+        <div class="message-item"><input type="text" value="Don't Break Limits, Break Rule"><button class="remove-msg">-</button></div>
+        <div class="message-item"><input type="text" value="It's Not Luck, It's Code"><button class="remove-msg">-</button></div>
+        <div class="message-item"><input type="text" value="Nah, I'd Win"><button class="remove-msg">-</button></div>
+        <div class="message-item"><input type="text" value="My Limit Is The Ant Cheat"><button class="remove-msg">-</button></div>
+    </div>
+    <button id="add-message">Add Message</button>
+</div>
+
 <button id="copy-settings">Copy Settings</button>
 
 <script>
-const container = document.getElementById('inputs-container');
-const addBtn = document.getElementById('add-input');
-const copyBtn = document.getElementById('copy-settings');
+function bool(id){return document.getElementById(id).value==='true';}
+function num(id){return Number(document.getElementById(id).value);}
+function str(id){return document.getElementById(id).value.charAt(0).toUpperCase()+document.getElementById(id).value.slice(1);}
 
-addBtn.addEventListener('click', () => {
-  const newDiv = document.createElement('div');
-  const newInput = document.createElement('input');
-  newInput.type = 'text';
-  newInput.className = 'message-input';
-  newInput.maxLength = 200;
-  newInput.style.marginBottom = '10px';
-  newInput.style.width = '300px';
-  newDiv.appendChild(newInput);
-  container.appendChild(newDiv);
+document.getElementById('copy-settings').addEventListener('click', () => {
+    const Settings = {
+        ["Team"]: str('team'),
+        ["Distance"]: num('distance'),
+        ["Auto Click"]: bool('auto-click'),
+        ["Use V3"]: bool('use-v3'),
+        ["Use V4"]: bool('use-v4'),
+        ["Use Ken"]: bool('use-ken'),
+        ["Ignore Friends"]: bool('ignore-friends'),
+        ["Level Difference"]: num('level-diff'),
+        ["FPS Boost"]: bool('fps-boost'),
+        ["Melee"]:{
+            ["Enable"]: bool('melee-enable'),
+            ["Delay"]: num('melee-delay'),
+            ["Z"]:{Enable: bool('melee-z-enable'), HoldTime: num('melee-z-hold')},
+            ["X"]:{Enable: bool('melee-x-enable'), HoldTime: num('melee-x-hold')},
+            ["C"]:{Enable: bool('melee-c-enable'), HoldTime: num('melee-c-hold')},
+            ["V"]:{Enable: bool('melee-v-enable'), HoldTime: num('melee-v-hold')}
+        },
+        ["Fruits"]:{
+            ["Enable"]: bool('fruit-enable'),
+            ["Delay"]: num('fruit-delay'),
+            ["Z"]:{Enable: bool('fruit-z-enable'), HoldTime: num('fruit-z-hold')},
+            ["X"]:{Enable: bool('fruit-x-enable'), HoldTime: num('fruit-x-hold')},
+            ["C"]:{Enable: bool('fruit-c-enable'), HoldTime: num('fruit-c-hold')},
+            ["V"]:{Enable: bool('fruit-v-enable'), HoldTime: num('fruit-v-hold')},
+            ["F"]:{Enable: bool('fruit-f-enable'), HoldTime: num('fruit-f-hold')}
+        },
+        ["Gun"]:{
+            ["Enable"]: bool('gun-enable'),
+            ["Delay"]: num('gun-delay'),
+            ["Z"]:{Enable: bool('gun-z-enable'), HoldTime: num('gun-z-hold')},
+            ["X"]:{Enable: bool('gun-x-enable'), HoldTime: num('gun-x-hold')}
+        },
+        ["Sword"]:{
+            ["Enable"]: bool('sword-enable'),
+            ["Delay"]: num('sword-delay'),
+            ["Z"]:{Enable: bool('sword-z-enable'), HoldTime: num('sword-z-hold')},
+            ["X"]:{Enable: bool('sword-x-enable'), HoldTime: num('sword-x-hold')}
+        },
+        ["Chat"]: bool('chat-enable'),
+        ["Messages"]: Array.from(document.querySelectorAll('#messages-list input')).map(i => i.value)
+    };
+
+    function toLua(obj, indent=''){
+        function isArray(o){
+            return Array.isArray(o) || Object.keys(o).every(k => !isNaN(Number(k)));
+        }
+        if(isArray(obj)){
+            let lua = '{';
+            for(let i=0;i<obj.length;i++){
+                let val=obj[i];
+                if(typeof val==='object') lua += toLua(val,indent+'   ')+', ';
+                else if(typeof val==='string') lua += `"${val}", `;
+                else lua += `${val}, `;
+            }
+            if(lua.endsWith(', ')) lua = lua.slice(0,-2);
+            lua += '}';
+            return lua;
+        }
+        let lua='{\n';
+        for(const key in obj){
+            let val=obj[key];
+            if(typeof val==='object') lua+=`${indent}   ["${key}"] = ${toLua(val,indent+'   ')},\n`;
+            else if(typeof val==='string') lua+=`${indent}   ["${key}"] = "${val}",\n`;
+            else lua+=`${indent}   ["${key}"] = ${val},\n`;
+        }
+        lua+=indent+'}';
+        return lua;
+    }
+
+    const luaText = 'Settings = ' + toLua(Settings) + '\n';
+    navigator.clipboard.writeText(luaText).then(()=>{alert('Copied Settings');}).catch(()=>{alert('Error! Try Again');});
 });
 
-copyBtn.addEventListener('click', () => {
-  const inputs = document.querySelectorAll('.message-input');
-  const messages = [];
-  inputs.forEach(input => {
-    if(input.value.trim() !== '') messages.push(input.value);
-  });
+const messagesList = document.getElementById('messages-list');
 
-  const luaText = 'Settings = {\n   ["Messages"] = {' + messages.map(msg => `"${msg.replace(/"/g,'\\"')}"`).join(', ') + '},\n}';
-
-  navigator.clipboard.writeText(luaText).then(() => {
-    alert('Copied messages in Roblox Lua format!');
-  }).catch(err => {
-    alert('Error When Copying: ' + err);
-  });
+document.getElementById('add-message').addEventListener('click', () => {
+    const div = document.createElement('div');
+    div.className = 'message-item';
+    div.innerHTML = `<input type="text" value="K"><button class="remove-msg">-</button>`;
+    messagesList.appendChild(div);
+    attachRemove(div.querySelector('.remove-msg'));
 });
+
+function attachRemove(button){
+    button.addEventListener('click', ()=>{button.parentElement.remove();});
+}
+
+document.querySelectorAll('.remove-msg').forEach(attachRemove);
 </script>
 </body>
 </html>
